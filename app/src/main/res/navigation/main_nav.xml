@@ -9,5 +9,22 @@
         android:id="@+id/homeFragment"
         android:name="com.decode.noteapp.ui.fragment.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.decode.noteapp.ui.fragment.create.CreateNoteFragment"
+        android:label="fragment_create_note"
+        tools:layout="@layout/fragment_create_note" />
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.decode.noteapp.ui.fragment.edit.EditNoteFragment"
+        android:label="fragment_edit_note"
+        tools:layout="@layout/fragment_edit_note" />
 </navigation>
