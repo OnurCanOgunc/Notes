@@ -1,28 +1,22 @@
 package com.decode.noteapp.ui.fragment.create
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.decode.noteapp.R
+import androidx.fragment.app.viewModels
+import com.decode.noteapp.base.BaseFragment
+import com.decode.noteapp.databinding.FragmentCreateNoteBinding
+import com.decode.noteapp.viewmodel.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreateNoteFragment : Fragment() {
+class CreateNoteFragment :
+    BaseFragment<NotesViewModel, FragmentCreateNoteBinding>(FragmentCreateNoteBinding::inflate) {
+    override val viewModel: NotesViewModel by viewModels()
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun observeEvents() {
+        TODO("Not yet implemented")
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_note, container, false)
+    override fun onCreateFinished() {
+        TODO("Not yet implemented")
     }
 
 

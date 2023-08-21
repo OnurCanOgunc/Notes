@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
@@ -15,8 +16,8 @@ interface NoteDao {
     suspend fun deleteNote(notes: NotesEntity)
 
     @Query("Select * from Notes")
-    fun getAllNotes(): List<NotesEntity>
+    fun getAllNotes(): Flow<List<NotesEntity>>
 
     @Query("Select * from notes Where noteTitle Like '%'|| :text || '%'")
-    fun searchNote(text: String): List<NotesEntity>
+    fun searchNote(text: String): Flow<List<NotesEntity>>
 }
