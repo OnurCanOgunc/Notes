@@ -1,6 +1,5 @@
 package com.decode.noteapp.ui.fragment.create
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -39,10 +38,8 @@ class CreateNoteFragment :
             imageViewCheck.setOnClickListener {
                 if (isUpdate) {
                     updateNote()
-                    Log.e("Update","Updateeeee")
                 } else{
                     saveNote()
-                    Log.e("Savee","Saveeeeee")
                 }
 
             }
