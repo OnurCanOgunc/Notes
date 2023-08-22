@@ -1,7 +1,9 @@
 package com.decode.noteapp.ui.fragment.create
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.decode.noteapp.R
 import com.decode.noteapp.base.BaseFragment
 import com.decode.noteapp.databinding.FragmentCreateNoteBinding
@@ -9,6 +11,7 @@ import com.decode.noteapp.db.NotesEntity
 import com.decode.noteapp.viewmodel.NotesViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -17,13 +20,15 @@ import java.util.Locale
 class CreateNoteFragment :
     BaseFragment<NotesViewModel, FragmentCreateNoteBinding>(FragmentCreateNoteBinding::inflate) {
     override val viewModel: NotesViewModel by viewModels()
+    private val args: CreateNoteFragmentArgs by navArgs()
+    private var isUpdate = false
 
     override fun observeEvents() {
 
     }
 
     override fun onCreateFinished() {
-
+        updateEditText()
     }
 
     override fun pass() {
@@ -32,12 +37,19 @@ class CreateNoteFragment :
                 findNavController().navigate(R.id.action_createNoteFragment_to_homeFragment)
             }
             imageViewCheck.setOnClickListener {
-                saveNote()
+                if (isUpdate) {
+                    updateNote()
+                    Log.e("Update","Updateeeee")
+                } else{
+                    saveNote()
+                    Log.e("Savee","Saveeeeee")
+                }
+
             }
         }
     }
 
-    private fun saveNote() {
+    private fun saveNote(){
 
         when {
             binding.editTextTitle.text.isNullOrEmpty() -> {
@@ -63,9 +75,37 @@ class CreateNoteFragment :
         }
     }
 
+    private fun updateNote() {
+        NotesEntity(
+            args.note.noteId,
+            binding.editTextTitle.text.toString(),
+            binding.editTextNote.text.toString(),
+            dateTime()!!
+        ).also {
+            viewModel.saveNote(it)
+            findNavController().navigate(R.id.action_createNoteFragment_to_homeFragment)
+        }
+    }
+
     private fun dateTime(): String? {
         val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ROOT)
         return sdf.format(Date())
+    }
+
+    private fun updateEditText() {
+
+        try {
+            val noteArgs = args.note
+            isUpdate = true
+
+            binding.apply {
+                editTextTitle.setText(noteArgs.noteTitle)
+                editTextNote.setText(noteArgs.note)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
 }

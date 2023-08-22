@@ -34,7 +34,7 @@
                     android:maxLength="35"
                     android:text="@{note.noteTitle}"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:padding="8dp" />
 
@@ -48,7 +48,7 @@
                     android:ellipsize="end"
                     android:padding="8dp"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tvDateTime"
@@ -59,7 +59,7 @@
                     android:text="@{note.date}"
                     android:layout_marginStart="3dp"
                     android:textColor="#717171"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 

@@ -10,10 +10,16 @@ import com.decode.noteapp.db.NotesEntity
 
 class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
+    var onItemClick:((NotesEntity)->Unit)? = null
+
     class NotesViewHolder(private val binding: ItemNotesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(notesEntity: NotesEntity) {
+            fun bind(notesEntity: NotesEntity, onItemClick:(NotesEntity)->Unit) {
                 binding.note = notesEntity
+
+                binding.cardView.setOnClickListener {
+                    onItemClick.invoke(notesEntity)
+                }
             }
         }
 
@@ -25,7 +31,7 @@ class NotesAdapter: RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
     override fun getItemCount(): Int = differ.currentList.size
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
-        holder.bind(differ.currentList[position])
+        onItemClick?.let { holder.bind(differ.currentList[position], it) }
     }
 
     private val differCalBack = object :DiffUtil.ItemCallback<NotesEntity>() {

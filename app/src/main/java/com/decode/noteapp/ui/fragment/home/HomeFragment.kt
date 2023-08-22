@@ -29,6 +29,7 @@ class HomeFragment : BaseFragment<NotesViewModel, FragmentHomeBinding>(
 
     override fun onCreateFinished() {
         initRcylerView()
+        noteOnItemClick()
     }
 
     override fun pass() {
@@ -39,6 +40,13 @@ class HomeFragment : BaseFragment<NotesViewModel, FragmentHomeBinding>(
 
     private fun initRcylerView() {
         binding.rv.initRecyclerView(StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL), adapter)
+    }
+
+    private fun noteOnItemClick() {
+        adapter.onItemClick = {
+            val nav = HomeFragmentDirections.actionHomeFragmentToCreateNoteFragment(it)
+            findNavController().navigate(nav)
+        }
     }
 
 }
