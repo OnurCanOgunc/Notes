@@ -19,6 +19,7 @@ abstract class BaseFragment<VM:ViewModel, VB: ViewBinding>(
 
     protected abstract fun observeEvents()
     protected abstract fun onCreateFinished()
+    protected abstract fun pass()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +35,7 @@ abstract class BaseFragment<VM:ViewModel, VB: ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pass()
         onCreateFinished()
         observeEvents()
     }
@@ -42,4 +44,5 @@ abstract class BaseFragment<VM:ViewModel, VB: ViewBinding>(
         super.onDestroy()
         _binding = null
     }
+
 }

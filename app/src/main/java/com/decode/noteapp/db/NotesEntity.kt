@@ -7,7 +7,8 @@ import com.decode.noteapp.utils.Constants.TABLE_NAME
 @Entity(tableName = TABLE_NAME)
 data class NotesEntity(
     @PrimaryKey(autoGenerate = true)
-    val noteId: Int,
-    val noteTitle:String,
-    val note: String
+    val noteId: Int = 0,
+    val noteTitle: String?,
+    val note: String?,
+    val date: String?
 )

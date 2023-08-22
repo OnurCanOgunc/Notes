@@ -7,4 +7,8 @@
     <string name="title">Başlık</string>
     <string name="yazmaya_ba_la">Yazmaya Başla</string>
     <string name="add">ADD</string>
+    <string name="note_title">Başlık Gerekli</string>
+    <string name="note">Bir şeyler Yaz</string>
+    <string name="ok">Tamam</string>
+    <string name="notlar">Notlar</string>
 </resources>
