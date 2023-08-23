@@ -1,5 +1,6 @@
 package com.decode.noteapp.ui.fragment.home
 
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -34,6 +35,7 @@ class HomeFragment : BaseFragment<NotesViewModel, FragmentHomeBinding>(
         initRcylerView()
         noteOnItemClick()
         mealDelete()
+        noteSearch()
     }
 
     override fun pass() {
@@ -76,5 +78,20 @@ class HomeFragment : BaseFragment<NotesViewModel, FragmentHomeBinding>(
             findNavController().navigate(nav)
         }
     }
+
+    private fun noteSearch() {
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.getSearchNotes(newText.toString())
+                return true
+            }
+
+        })
+    }
+
 
 }
